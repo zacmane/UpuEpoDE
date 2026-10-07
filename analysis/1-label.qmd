@@ -1,0 +1,101 @@
+---
+title: Tag label
+editor: source
+description: https://raphaelnussbaumer.com/GeoPressureManual/geopressuretemplate-label.html
+---
+
+This script will guide you through the tag labeling of pressure and/or acceleration data and creation of the pressure map.
+
+```{r setup, message=FALSE}
+
+# Choose the id
+id <- "34KB"
+
+# Set the directory to the project root
+# see Working directory bullet point in https://bookdown.org/yihui/rmarkdown/notebook.html#executing-code
+knitr::opts_knit$set(root.dir = here::here())
+# Alternatively, you can change the global RStudio settings in menu "Tools/Global Options...", on the "R Markdown" panel, choose "Project" for "Evaluate chunks in directory:"
+
+# Development version:
+# pak::pkg_install("GeoPressure/GeoPressureR@dev")
+# pak::pkg_install("GeoPressure/GeoPressureR")
+# packageVersion("GeoPressureR")
+# remove.packages("GeoPressureR")
+
+library(GeoPressureR)
+library(ggplot2)
+library(plotly)
+```
+
+## Edit `config.yml`
+
+Check that the config is correct.
+
+```{r}
+geopressuretemplate_config(id)
+```
+
+## Sensor data and crop date
+
+Check if the crop dates (in red) are correct.
+
+```{r crop_date}
+ggplotly(
+  tag_create(id, quiet = TRUE) |>
+    plot(type = "pressure", plot_plotly = FALSE) +
+    geom_vline(
+      xintercept = c(
+        as.POSIXct(config::get("tag_create", id)$crop_start),
+        as.POSIXct(config::get("tag_create", id)$crop_end)
+      ),
+      color = "red",
+      lwd = 1
+    )
+)
+```
+
+You might want to change `type` to check the values of the other sensors (e.g., `acceleration` or `light`).
+
+Create tag with cropped date:
+
+```{r tag_create}
+tag <- tag_create(
+  id,
+  crop_start = config::get("tag_create", id)$crop_start,
+  crop_end = config::get("tag_create", id)$crop_end
+)
+```
+
+## Labeling
+
+Use the trainset shiny app for labeling
+
+```{r}
+#| eval: false
+trainset(tag)
+```
+
+
+
+```{r}
+#| eval: false
+tag <- tag_create(
+  id,
+  crop_start = config::get("tag_create", id)$crop_start,
+  crop_end = config::get("tag_create", id)$crop_end
+) |>
+  tag_label() |>
+  tag_set_map(
+    extent = config::get("tag_set_map", id)$extent,
+    scale = 5, # Use a coarse scale at first 1° is usually enough
+    known = config::get("tag_set_map", id)$known
+  ) |>
+  geopressure_map(workers = 1) 
+```
+
+Run GeoPressureViz:
+
+```{r}
+#| eval: false
+geopressureviz(tag, path = tag2path(tag, interp = 1))
+```

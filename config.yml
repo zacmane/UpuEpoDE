@@ -1,0 +1,186 @@
+# Configuration file for GeoPressureR parameters
+#
+# This file stores all the parameters used by the GeoPressureR functions, following the best
+# practice to separate parameters from codes. These parameters are retrieved using config::get() of
+# the config R package <https://rstudio.github.io/config/>.
+#
+# This file is meant to be adapted based on your needs: feel free to add parameters either in the
+# default (applied to all tags) or for each tag seperatly (overwrite default). It is recommended to
+# specify all parameters used, even if you use the default value.
+#
+# You can check the documentation of each function to learn what each of these parameters are doing
+# as well as reading https://raphaelnussbaumer.com/GeoPressureManual/geopressuretemplate-workflow.html
+
+default:
+  tag_create: # ?tag_create()
+    # crop_start: NULL # Generally set at the tag level
+    # crop_end: NULL
+  tag_set_map: # ?tag_set_map()
+    extent: [-16, 23, 0, 50] # [W, E, S, N]
+    scale: 5 # 1 (min) -> 1° ; 2 -> 0.5° ; 5 -> 0.25° ; 10 (max) -> 0.1°
+    include_stap_id: NULL # default, take all
+    include_min_duration: 0 # in hours
+  geopressure_map: # ?geopressure_map()
+    max_sample: 250
+    margin: 20 # in m
+    sd: 1
+    thr_mask: 0.9
+    log_linear_pooling_weight: !expr \(n) log(n)/n
+  twilight_create: # ?twilight_create()
+    # twl_thr: NULL
+    # twl_offset: NULL # in hours
+  geolight_map: # ?geolight_map()
+    twl_calib_adjust: 1.4
+    twl_llp: !expr \(n) log(n)/n
+  graph_create: # ?graph_create()
+    thr_likelihood: 0.99
+    thr_gs: 130 # km/h
+    # likelihood: NULL # Best to leave NULL.
+  graph_add_wind:
+    thr_as: 90 # km/h
+  graph_set_movement: # ?graph_set_movement()
+    # type: "gs"
+    # method: "gamma"
+    # shape: 7 # only for gamma
+    # scale: 7
+    # location: 40 # only for logistic
+    # low_speed_fix: 15 # km/h
+  graph_simulation: # ?graph_simulation()
+    nj: 10
+  pressurepath_create: # ?pressurepath_create()
+    variable: ["altitude", "surface_pressure",
+               "land_sea_mask","geopotential","temperature_2m",
+               "dewpoint_temperature_2m","u_component_of_wind_10m","v_component_of_wind_10m"]
+    source: "api"
+    # solar_dep: 0
+  geopressuretemplate: # ?geopressuretemplate()
+    likelihood: ["map_pressure", "map_light"] #  for nothing
+    outputs: ["marginal", "most_likely", "simulation"]
+    pressurepath: ["most_likely"] # "geopressureviz"
+
+
+30YB:
+  tag_create:
+    crop_start: "2023-07-01"
+    crop_end: "2024-05-14"
+  tag_set_map:
+    extent: [-18, 20, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 14.12
+      known_lat: 53.63
+  bird_create:
+    scientific_name: "Upupa epops"
+  geolight_map:
+    fitted_location_duration: 20
+  graph_set_movement:
+    type: "as"
+    zero_speed_ratio: 2
+
+
+30VI_1:
+  notes: "Year #2 for 30VI"
+  tag_create:
+    crop_start: "2024-07-01"
+    crop_end: "2025-05-19"
+  tag_set_map:
+    extent: [-18, 29, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 12.21
+      known_lat: 53.36
+  bird_create:
+    scientific_name: "Upupa epops"
+  graph_set_movement:
+    type: "as"
+    zero_speed_ratio: 2
+
+
+34AQ:
+  tag_create:
+    crop_start: "2024-07-01"
+    crop_end: "2025-05-19"
+  tag_set_map:
+    extent: [-18, 30, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 12.21
+      known_lat: 53.36
+  geolight_map:
+    fitted_location_duration: 20
+  bird_create:
+    scientific_name: "Upupa epops"
+  graph_set_movement:
+    type: "as"
+    zero_speed_ratio: 2
+
+
+
+
+34BK:
+  tag_create:
+    crop_start: "2024-07-01"
+    crop_end: "2025-05-02"
+  tag_set_map:
+    extent: [-18, 30, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 12.21
+      known_lat: 53.36
+  geolight_map:
+    fitted_location_duration: 20
+  geopressure_map:
+    margin: 40
+  bird_create:
+    scientific_name: "Upupa epops"
+  graph_set_movement:
+    type: "as"
+    zero_speed_ratio: 2
+
+
+34BM:
+  notes: "pressure not usable, light only"
+  tag_create:
+    crop_start: "2024-07-01"
+    crop_end: "2025-05-11"
+  tag_set_map:
+    extent: [-18, 30, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 12.21
+      known_lat: 53.36
+  bird_create:
+    scientific_name: "Upupa epops"
+  graph_set_movement:
+    type: "as"
+    zero_speed_ratio: 2
+  geopressuretemplate:
+    likelihood: ["map_light"] #  for nothing
+    outputs: ["marginal", "most_likely", "simulation"]
+    pressurepath: ["most_likely"] # "geopressureviz"
+  pressurepath_create: # pressure data unusable -> drop altitude (derived from tag's own pressure)
+    variable: ["surface_pressure", "land_sea_mask", "geopotential", "temperature_2m",
+               "dewpoint_temperature_2m", "u_component_of_wind_10m", "v_component_of_wind_10m"]
+
+34KB:
+  notes: "pressure not usable, light only; 2 broods in 1 year"
+  tag_create:
+    crop_start: "2025-07-16"
+    crop_end: "2026-07-04"
+  tag_set_map:
+    extent: [-18, 30, 0, 55] # [W, E, S, N]
+    known:
+      stap_id: [1, -1] # -1 -> last stap
+      known_lon: 12.21
+      known_lat: 53.36
+  bird_create:
+    scientific_name: "Upupa epops"
+  graph_set_movement:
+    type: "as"
+  geopressuretemplate:
+    likelihood: ["map_light"] #  for nothing
+    outputs: ["marginal", "most_likely", "simulation"]
+    pressurepath: ["most_likely"] # "geopressureviz"
+  pressurepath_create: # pressure data unusable -> drop altitude (derived from tag's own pressure)
+    variable: ["surface_pressure", "land_sea_mask", "geopotential", "temperature_2m",
+               "dewpoint_temperature_2m", "u_component_of_wind_10m", "v_component_of_wind_10m"]

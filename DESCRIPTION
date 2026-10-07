@@ -1,0 +1,39 @@
+Package: UpuEpoDE
+Title: Geolocator Study of Eurasian Hoopoes in Germany
+URL: https://github.com/<org>/<repo>
+Description: Pressure and light based multi-sensor geolocator tracking of
+    Eurasian Hoopoes (Upupa epops) breeding in nest boxes in Marienfliess,
+    northern Germany, between 2023 and 2026. Includes raw tag data, manual
+    light and pressure labeling, and the GeoPressureR analysis workflow used
+    to reconstruct migratory trajectories.
+Authors@R:
+    c(person("Martins", "Briedis", , "martins.briedis@vogelwarte.ch", role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0002-9434-9056")),
+      person("Angela", "Schmitz Ornes", , "angela.schmitz@uni-greifswald.de", role = "aut",
+             comment = c(ORCID = "0000-0001-5298-9365")),
+      person("Elza", "Zacmane", , "elza.zacmane@vogelwarte.ch", role = "cur",
+             comment = c(ORCID = "0009-0006-9353-8687")),
+      person("Dorthe Melanie", "Kemper", role = "dtc"),
+      person("Kerstin", "Bull", role = "dtc"),
+      person("Monty", "Erselius", role = "dtc"),
+      person("Frank", "Joisten", role = "dtc"))
+License: CC BY 4.0
+Version: 0.1.0
+Depends:
+    R (>= 3.5.0)
+Imports:
+    GeoPressureR,
+    GeoLocatoR,
+    ggplot2,
+    config,
+    knitr,
+    plotly,
+    rmarkdown
+Remotes:
+    rafnuss/GeoPressureR,
+    rafnuss/GeoLocatoR
+VignetteBuilder:
+    knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

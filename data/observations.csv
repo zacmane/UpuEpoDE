@@ -1,0 +1,40 @@
+ring_number;tag_id;observation_type;datetime;latitude;longitude;location_name;device_status;observer;catching_method;age_class;sex;condition;mass;wing_length;additional_metric;observation_comments
+NA238586;30VH;equipment;2023-05-27T14:00:00Z;53.35815;12.19378;Marienfliess--Nest box #18;present;Kerstin Bull;N;2;F;alive;74.0;143.0;;
+NA251225;30VI_2;equipment;2023-06-25T14:00:00Z;53.35736;12.21519;Marienfliess--Nest box #1;present;Kerstin Bull;N;2;F;alive;74.0;140.0;;
+NA251225;30VI_1;equipment;2024-07-01T14:00:00Z;53.35736;12.21519;Marienfliess--Nest box #;present;Kerstin Bull;N;4;F;alive;;;;
+NA251209;30VJ;equipment;2023-06-08T14:00:00Z;53.34311;12.09871;Marienfliess--Nest box #14;present;Kerstin Bull;N;2;F;alive;70.0;138.0;;
+NA238600;30VK;equipment;2023-06-05T14:00:00Z;53.37375;12.14701;Marienfliess--Nest box #41;present;Kerstin Bull;N;2;F;alive;80.0;143.0;;
+NA238512;30VL;equipment;2023-06-05T14:00:00Z;53.34207;12.16546;Marienfliess--Nest box #14;present;Kerstin Bull;N;2;F;alive;75.0;140.0;;
+NA238585;30WG;equipment;2023-05-27T14:00:00Z;53.34688;12.05707;Marienfliess--Nest box #23;present;Kerstin Bull;N;2;F;alive;81.0;143.0;;
+NA238538;30WI;equipment;2023-05-27T14:00:00Z;53.35616;12.05380;Marienfliess--Nest box #21;present;Kerstin Bull;N;3;F;alive;66.0;143.0;;
+NA238584;30WJ;equipment;2023-05-27T14:00:00Z;53.34531;12.09495;Marienfliess--Nest box #32;present;Kerstin Bull;N;2;F;alive;76.0;139.0;;
+NA238537;30XJ;equipment;2023-05-27T14:00:00Z;53.34863;12.16256;Marienfliess--Nest box #16;present;Kerstin Bull;N;3;F;alive;75.0;140.0;;
+30YB;30YB;equipment;2023-07-01T14:00:00Z;53.63;14.12;;present;;;2;U;alive;;;;Ring number, age and location reconstructed from tag_create config known_lon/known_lat - tag never retrieved, no field data available
+NA238581;30YC;equipment;2023-05-27T14:00:00Z;53.35985;12.20786;Marienfliess--Nest box #19;present;Kerstin Bull;N;6;F;alive;78.0;145.0;;
+NA251256;32QL;equipment;2024-05-16T14:00:00Z;53.35322;12.05937;Marienfliess--Nest box #24;present;Kerstin Bull;N;2;F;alive;65.0;141.0;;
+NA251257;32QO;equipment;2024-05-16T14:00:00Z;53.35616;12.05380;Marienfliess--Nest box #21;present;Kerstin Bull;N;2;F;alive;74.0;147.0;;
+NA238520;32RC;equipment;2024-05-28T14:00:00Z;53.33824;12.14408;Marienfliess--Nest box #39;present;Kerstin Bull;N;3;F;alive;73.0;143.5;;
+NA251255;32RG;equipment;2024-05-16T14:00:00Z;53.34938;12.10796;Marienfliess--Nest box #30;present;Kerstin Bull;N;2;F;alive;77.0;145.0;;
+NA251259;34AQ;equipment;2024-05-28T14:00:00Z;53.33806;12.13883;Marienfliess--Nest box #38;present;Kerstin Bull;N;2;F;alive;74.0;145.0;;
+NA251258;34AR;equipment;2024-05-16T14:00:00Z;53.34734;12.08168;Marienfliess--Nest box #27;present;Kerstin Bull;N;2;F;alive;67.0;138.0;;
+NA251254;34BK;equipment;2024-05-16T14:00:00Z;53.35089;12.10205;Marienfliess--Nest box #29;present;Kerstin Bull;N;2;F;alive;70.0;145.0;;
+NA251266;34BL;equipment;2024-05-28T14:00:00Z;53.33935;12.15324;Marienfliess--Nest box #41;present;Kerstin Bull;N;2;F;alive;72.0;140.0;;
+NA251267;34BM;equipment;2024-05-28T14:00:00Z;53.35709;12.18913;Marienfliess--Nest box #17;present;Kerstin Bull;N;2;F;alive;65.0;138.5;;
+NA073791;34BN;equipment;2024-06-21T14:00:00Z;53.35448;12.03978;Marienfliess--Nest box #22;present;Kerstin Bull;N;2;F;alive;72.0;141.5;;
+NA040145;34IC;equipment;2025-05-24T14:00:00Z;53.35709;12.18913;Marienfliess--Nest box #17;present;Kerstin Bull;N;2;F;alive;60.0;134.0;;
+NA040144;34IV;equipment;2025-05-15T14:00:00Z;53.33839;12.14788;Marienfliess--Nest box #40;present;Kerstin Bull;N;2;F;alive;75.0;148.0;;
+NA040146;34IW;equipment;2025-05-24T14:00:00Z;53.35815;12.19378;Marienfliess--Nest box #18;present;Kerstin Bull;N;2;F;alive;75.0;148.0;;
+NA040149;34IY;equipment;2025-06-07T14:00:00Z;53.35409;12.18185;Marienfliess--Nest box #7;present;Kerstin Bull;N;2;F;alive;72.0;145.0;;
+NA040143;34JH;equipment;2025-05-25T14:00:00Z;53.34323;12.08200;Marienfliess--Nest box #65;present;Kerstin Bull;N;2;F;alive;76.0;141.0;;
+NA040142;34JL;equipment;2025-05-15T14:00:00Z;53.34525;12.10423;Marienfliess--Nest box #31;present;Kerstin Bull;N;2;F;alive;75.0;150.0;;
+NA040118;34JV;equipment;2025-05-15T14:00:00Z;53.35709;12.18913;Marienfliess--Nest box #32;present;Kerstin Bull;N;5;F;alive;68.0;141.0;;
+NA251265;34JY;equipment;2025-05-15T14:00:00Z;53.34734;12.08168;Marienfliess--Nest box #27;present;Kerstin Bull;N;3;F;alive;70.0;140.0;;
+NA040141;34KB;equipment;2025-05-15T14:00:00Z;53.34938;12.10796;Marienfliess--Nest box #30;present;Kerstin Bull;N;2;F;alive;77.0;146.0;;
+NA251225;30VI_2;retrieval;2024-06-30T14:00:00Z;53.35621;12.20410;Marienfliess--Nest box #;present;Kerstin Bull;N;4;F;alive;;;;
+NA251225;30VI_1;retrieval;2025-05-28T14:00:00Z;53.35621;12.20410;Marienfliess--Nest box #2;present;Kerstin Bull;N;6;F;alive;;;;
+30YB;30YB;retrieval;2024-05-14T14:00:00Z;53.63;14.12;;present;;;4;U;alive;;;;Retrieval confirmed by tag data present in measurements - no ringing/capture record available, date and location inferred from tag_create config crop_end and known_lon/known_lat
+NA251259;34AQ;retrieval;2025-05-13T14:00:00Z;53.34733;12.14273;Marienfliess--Nest box #74;present;Kerstin Bull;N;2;F;alive;;;;
+NA251258;34AR;capture;2025-05-18T14:00:00Z;53.34630;12.17567;Marienfliess--Nest box #9;missing;Kerstin Bull;N;2;F;alive;;;;
+NA251254;34BK;retrieval;2025-05-01T14:00:00Z;53.35616;12.05380;Marienfliess--Nest box #21;present;Kerstin Bull;N;2;F;alive;;;;
+NA251267;34BM;retrieval;2025-05-12T14:00:00Z;53.35486;12.19600;Marienfliess--Nest box #76;present;Kerstin Bull;N;2;F;alive;;;;
+NA040141;34KB;retrieval;2026-07-05T14:00:00Z;53.34938;12.10796;Marienfliess;present;Kerstin Bull;N;4;F;alive;;;;

@@ -1,0 +1,90 @@
+---
+title: Twilight label
+editor: source
+description: https://raphaelnussbaumer.com/GeoPressureManual/geopressuretemplate-twilight.html
+---
+
+
+```{r setup}
+id <- "34KB"
+
+knitr::opts_knit$set(root.dir = here::here())
+library(GeoPressureR)
+library(ggplot2)
+```
+
+## Create tag
+
+Make sure you have already created the label file with the "1-label.qmd" script.
+
+```{r}
+tag <- tag_create(
+  id,
+  crop_start = config::get("tag_create", id)$crop_start,
+  crop_end = config::get("tag_create", id)$crop_end,
+  quiet = TRUE
+) |>
+  tag_label(quiet = TRUE) |>
+  tag_set_map(
+    extent = config::get("tag_set_map", id)$extent,
+    scale = config::get("tag_set_map", id)$scale,
+    known = config::get("tag_set_map", id)$known
+  )
+```
+
+## Create Twilight
+
+Generate the twilight automatically. Check that `twl_offset` allows for night/day being centered on the figure, otherwise edit accordingly
+
+```{r}
+tag <- twilight_create(
+  tag,
+  twl_offset = config::get("twilight_create", id)$twl_offset
+)
+plot(tag, type = "twilight")
+```
+
+## Annotate twilight in GeoLightViz
+
+```{r}
+#| eval: false
+geolightviz(tag)
+```
+
+## Compute likelihood map
+
+```{r}
+tag <- twilight_label_read(tag)
+tag <- geolight_map(
+  tag,
+  twl_calib_adjust = config::get("geolight_map", id)$twl_calib_adjust,
+  twl_llp = config::get("geolight_map", id)$twl_llp,
+  fitted_location_duration = config::get(
+    "geolight_map",
+    id
+  )$fitted_location_duration
+)
+```
+
+`twl_calib_adjust`, `fitted_location_duration` and `twl_llp` can generally be left to default, but can be modified in `config.yml` if needed.
+
+## Check
+
+### Check calibration
+
+```{r}
+plot_twl_calib(tag)
+```
+
+### Check light map
+
+```{r}
+plot(tag, type = "map_light")
+```
+
+### Check with pressure and trajectory
+
+```{r}
+#| eval: false
+geopressureviz(tag)
+```

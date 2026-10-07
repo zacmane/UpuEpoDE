@@ -1,0 +1,109 @@
+---
+title: Download wind
+editor: source
+description: https://raphaelnussbaumer.com/GeoPressureManual/geopressuretemplate-wind.html
+---
+
+This script will help you download the wind data for a `tag` and define the movement model.
+
+
+```{r setup}
+id <- "34KB"
+
+knitr::opts_knit$set(root.dir = here::here())
+library(GeoPressureR)
+```
+
+
+
+## Create tag
+
+Make sure you have already created the label file with the "1-label.qmd" script.
+
+```{r, cache = TRUE, message=FALSE}
+tag <- geopressuretemplate_tag(id, quiet = F)
+```
+
+## Download wind data
+
+The [job package](https://lindeloev.github.io/job) allows you to download the wind data in the background and let your R console free to use.
+
+```{r, eval = FALSE}
+
+tag_download_wind(tag, workers = 8)
+
+```
+
+Check requests at <https://cds.climate.copernicus.eu/requests>
+
+## Define movement model
+
+::: callout-danger
+Make sure to update the type from `"gs"` to `"as"` in `config.yml`:
+
+```yml
+graph_set_movement:
+  type: "as"
+```
+:::
+
+### Add wind data
+
+```{r}
+graph <- graph_create(
+  tag,
+  thr_likelihood = config::get("graph_create", id)$thr_likelihood,
+  thr_gs = config::get("graph_create", id)$thr_gs
+)
+```
+
+```{r}
+graph <- graph_add_wind(
+  graph,
+  pressure = tag$pressure,
+  thr_as = config::get("graph_add_wind", id)$thr_as
+)
+```
+
+### Set movement model
+
+Check that the movement model defined in `config.yml` is adequate.
+
+```{r}
+graph <- graph_set_movement(
+  graph,
+  bird = bird_create(config::get("bird_create", id)$scientific_name)
+)
+```
+
+Check the movement model
+
+```{r}
+plot_graph_movement(graph)
+
+path_most_likely <- graph_most_likely(graph, quiet = TRUE)
+marginal <- graph_marginal(graph, quiet = TRUE)
+path_simulation <- graph_simulation(graph, nj = 10, quiet = TRUE)
+
+plot(marginal, path = path_most_likely)
+plot_path(path_simulation, plot_leaflet = FALSE)
+```
+
+
+```{r}
+
+edge_simulation <- path2edge(path_simulation, graph)
+edge_most_likely <- path2edge(path_most_likely, graph)
+knitr::kable(head(edge_most_likely, 3), digits = 1)
+
+library(ggplot2)
+plot_graph_movement(graph) +
+  geom_histogram(
+    data = data.frame(as = abs(edge_simulation$gs - edge_simulation$ws)),
+    aes(x = as, y = after_stat(count) / sum(after_stat(count))),
+    color = "black",
+    fill = NA,
+    bins = 100
+  )
+```
+
